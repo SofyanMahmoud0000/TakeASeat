@@ -15,11 +15,12 @@ class Matches extends Migration
     {
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("home_id");
-            $table->unsignedBigInteger("away_id");
-            $table->foreign("home_id")->references("users")->on("id")->onDelete("cascade");
-            $table->foreign("away_id")->references("users")->on("id")->onDelete("cascade");
-            $table->string("venue");
+            $table->unsignedBigInteger("home_team_id");
+            $table->unsignedBigInteger("away_team_id");
+            $table->foreign("home_team_id")->references("id")->on("teams")->onDelete("cascade");
+            $table->foreign("away_team_id")->references("id")->on("teams")->onDelete("cascade");
+            $table->unsignedBigInteger("stadium_id");
+            $table->foreign("stadium_id")->references("id")->on("stadiums")->onDelete("cascade");
             $table->dateTime("date_time");
             $table->string("main_referee");
             $table->string("linesmen_1");

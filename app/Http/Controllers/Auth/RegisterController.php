@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -33,9 +34,24 @@ class RegisterController extends Controller
         return User::create($data);
     }
 
+    /**
+    * @group Uesr
+    * @queryParam first_name required	
+    * @queryParam last_name required	
+    * @queryParam username required	
+    * @queryParam email required
+    * @queryParam password required	
+    * @queryParam password_confirmed required	
+    * @queryParam birthday required	
+    * @queryParam gender required	
+    * @queryParam role required	
+    * @queryParam city required	
+    * @queryParam address optional	
+    */
     public function register(Request $request)
     {
-        if($validator = $this->validator($request()->all())->fails()){
+        $validator = $this->validator($request->all());
+        if($validator->fails()){
             return $this->notRegistered($validator);
         }
         $user = $this->create($request->all());
@@ -43,6 +59,8 @@ class RegisterController extends Controller
 
     }
 
+
+    
     protected function registered(Request $request, $user)
     {
         return response()->json([
@@ -50,11 +68,11 @@ class RegisterController extends Controller
         ],200);
     }
 
-    protected function notRegistered($validator)
+    protected function notRegistered($validate)
     {
-        return response()->json([
-            'message' => 'success'
-        ],200);
+        return response()->json(
+            $validate->errors()->getMessages()
+            ,200);
     }
 
     protected function guard()

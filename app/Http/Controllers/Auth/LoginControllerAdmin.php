@@ -9,16 +9,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 
-
-class LoginController extends Controller
+class LoginControllerAdmin extends Controller
 {
     use AuthenticatesUsers;
 
-
     /**
-    * @group Uesr
+    * @group Adminstator
     * @unauthenticated
-    * @queryParam email required	
+    * @queryParam username required
     * @queryParam password required
     * @response 200 {
     *  "token": "token_value",
@@ -56,11 +54,11 @@ class LoginController extends Controller
     }
 
     protected function sendFailedLoginResponse($errors,$type){
-        return ($type) ? response()->json($errors,200): response()->json(['auth' => 'The password or email is wrong, try again'],201);
+        return ($type) ? response()->json($errors,200): response()->json(['auth' => 'The password or username is wrong, try again'],201);
     }
 
     protected function attemptLogin(Request $request){
-        return auth()->attempt($this->credentials($request));
+        return auth("api_admin")->attempt($this->credentials($request));
     }
     
     protected function sendLoginResponse(Request $request, $token)
@@ -77,5 +75,10 @@ class LoginController extends Controller
             'token' => $token,
             'token_type' => "bearer"
         ],200);
+    }
+
+    public function username()
+    {
+        return 'username';
     }
 }

@@ -16,12 +16,14 @@ class Reservations extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("stadium_id");
+            $table->unsignedBigInteger("match_id");
             $table->unsignedBigInteger("user_id");
-            $table->unsignedBigInteger("seat_id");
+            $table->integer("row");
+            $table->integer("col");
 
-            $table->foreign("stadium_id")->references("stadiums")->on("id")->onDelete("cascade");
-            $table->foreign("user_id")->references("users")->on("id")->onDelete("cascade");
-            $table->foreign("seat_id")->references("seats")->on("id")->onDelete("cascade");
+            $table->foreign("stadium_id")->references("id")->on("stadiums")->onDelete("cascade");
+            $table->foreign("match_id")->references("id")->on("matches")->onDelete("cascade");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();
         });
     }
