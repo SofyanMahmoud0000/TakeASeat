@@ -1,6 +1,6 @@
 Take a seat
 =============
-In this repo, I have create an API for a system make it easy for user to reseve a seat for a match.
+In this repo, I have create an API for a system make it easy to user to reserve a seat for a match.
 The system has many type of user, each one of them has its own functions, like the following
 
 * Adminstrator
@@ -31,7 +31,7 @@ You can see the API documentation by just clicking [here](https://docs0.herokuap
 
 ## Database schema
 
-![Database schema](https://github.com/sofyanmahmoud0000/takeaseat/blob/master/public/readmeimages/schema.png)
+![Database schema](https://github.com/sofyanmahmoud0000/TakeASeat/blob/master/public/ReadmeImages/schema.png)
 
 ## Build with 
 * [PHP](https://www.php.net/) - Language used
