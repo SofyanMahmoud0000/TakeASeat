@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
+use App\Models\User;
 
 
 class LoginController extends Controller
@@ -73,9 +74,14 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $token)
     {
+        $User = User::where("email",$request->email)->first();
         return response()->json([
             'token' => $token,
-            'token_type' => "bearer"
+            'token_type' => "bearer",
+            'verified' => ($User->email_verified_at != null)? 1: 0,
+            'first_name' => $User->first_name,
+            'last_name' => $User->last_name,
+            'role' => $User->role
         ],200);
     }
 }

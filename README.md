@@ -26,12 +26,12 @@ The system has many types of users, each one of them has its own functions, like
     * View matches details
 
 
-## Documentation
+## API Documentation
 You can see the API documentation by just clicking [here](https://docs0.herokuapp.com/#introduction)
 
 ## Database schema
 
-![Database schema](https://github.com/sofyanmahmoud0000/TakeASeat/blob/master/public/ReadmeImages/schema.png)
+![Database schema](https://github.com/sofyanmahmoud0000/matchera/blob/master/public/ReadmeImages/schema.png)
 
 ## Build with 
 * [PHP](https://www.php.net/) - Language used
