@@ -1,4 +1,4 @@
-Take a seat
+Matchera
 =============
 In this repo, I have create an API for a system make it easy to user to reserve a seat for a match.
 The system has many types of users, each one of them has its own functions, like the following
